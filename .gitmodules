@@ -1,0 +1,9 @@
+[submodule "workspace/vcpkg"]
+	path = workspace/vcpkg
+	url = https://github.com/microsoft/vcpkg.git
+[submodule "workspace/LongMarch/external/imgui"]
+	path = workspace/LongMarch/external/imgui
+	url = https://github.com/ocornut/imgui.git
+[submodule "workspace/LongMarch/external/pybind11"]
+	path = workspace/LongMarch/external/pybind11
+	url = https://github.com/pybind/pybind11.git

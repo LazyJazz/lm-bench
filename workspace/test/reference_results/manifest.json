@@ -1,0 +1,45 @@
+{
+  "format": "sparkium-reference-results",
+  "version": 1,
+  "renderer": "sparkium_cli",
+  "reference_spp": 4096,
+  "files": [
+    {
+      "scene": "area_light",
+      "spp": 4096,
+      "file": "area_light_4096spp.png",
+      "sha256": "1f03a1b5fb6aca5dc9f79832474150a3fb1ab3f89872ce14583150e45bfbd92f"
+    },
+    {
+      "scene": "cornell_box",
+      "spp": 4096,
+      "file": "cornell_box_4096spp.png",
+      "sha256": "0d5028780a42d40fc85415065a1c5f92ba38e57852de5b2795ff6661ab51f0b9"
+    },
+    {
+      "scene": "point_light",
+      "spp": 4096,
+      "file": "point_light_4096spp.png",
+      "sha256": "153e9fd680781c387a68b0ecc7c7354460bcd189c59c7abb389edd12c56abb88"
+    },
+    {
+      "scene": "specular",
+      "spp": 4096,
+      "file": "specular_4096spp.png",
+      "sha256": "aeb1b94284568a327b43492df235e97e58001460b84df8870fc23c657c7c5e9a"
+    },
+    {
+      "scene": "texture",
+      "spp": 4096,
+      "file": "texture_4096spp.png",
+      "sha256": "0bde875430f446bfbfe7dfa81db39555a27b63453a8765550b811629f37a405c"
+    }
+  ],
+  "evaluation_profile": {
+    "candidate_renderer": "sparkium_cpu_cli",
+    "candidate_spp": 32,
+    "pass_threshold": 0.8,
+    "intended_cpu_cores": 2,
+    "measured_total_cpu_seconds": 208.26
+  }
+}

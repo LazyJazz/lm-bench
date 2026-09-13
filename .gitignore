@@ -1,0 +1,21 @@
+# Build products and dependency caches
+build/
+build-*/
+cmake-build-*/
+**/build/
+**/build-*/
+eval/.build-longmarch/
+eval/rendered/
+
+# Generated evaluation output
+eval/code_result.json
+
+# Python caches
+__pycache__/
+*.py[cod]
+.pytest_cache/
+
+# Editor and OS files
+.vscode/
+.idea/
+.DS_Store
