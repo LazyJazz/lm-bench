@@ -1,0 +1,80 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://longmarch.dev/sparkium-scene.schema.json",
+  "title": "Sparkium scene",
+  "type": "object",
+  "required": ["format", "version", "film", "renderer", "camera", "materials", "geometries", "entities"],
+  "properties": {
+    "format": { "const": "sparkium-scene" },
+    "version": { "const": 1 },
+    "name": { "type": "string" },
+    "film": {
+      "type": "object", "required": ["width", "height"],
+      "properties": {
+        "width": { "type": "integer", "minimum": 1 }, "height": { "type": "integer", "minimum": 1 },
+        "persistence": { "type": "number" }, "clamping": { "type": "number" },
+        "max_exposure": { "type": "number" }
+      }
+    },
+    "renderer": {
+      "type": "object",
+      "properties": {
+        "pipeline": { "enum": ["auto", "rasterization", "ray_tracing"] },
+        "samples_per_dispatch": { "type": "integer", "minimum": 1 },
+        "max_bounces": { "type": "integer", "minimum": 1 }, "alpha_shadow": { "type": "boolean" },
+        "ambient_light": { "$ref": "#/$defs/vec3" }
+      }
+    },
+    "camera": {
+      "type": "object", "required": ["eye", "target"],
+      "properties": {
+        "eye": { "$ref": "#/$defs/vec3" }, "target": { "$ref": "#/$defs/vec3" },
+        "up": { "$ref": "#/$defs/vec3" }, "fov_degrees": { "type": "number" }
+      }
+    },
+    "materials": { "type": "object", "additionalProperties": { "$ref": "#/$defs/material" } },
+    "geometries": { "type": "object", "additionalProperties": { "$ref": "#/$defs/geometry" } },
+    "entities": { "type": "array", "items": { "$ref": "#/$defs/entity" } }
+  },
+  "$defs": {
+    "vec2": { "type": "array", "prefixItems": [{"type":"number"},{"type":"number"}], "items": false },
+    "vec3": { "type": "array", "prefixItems": [{"type":"number"},{"type":"number"},{"type":"number"}], "items": false },
+    "material": {
+      "type": "object", "required": ["type"],
+      "properties": {
+        "type": { "enum": ["lambertian", "specular", "principled", "light"] },
+        "base_color": { "$ref": "#/$defs/vec3" }, "emission": { "$ref": "#/$defs/vec3" },
+        "two_sided": { "type": "boolean" }, "block_ray": { "type": "boolean" },
+        "subsurface_color": { "$ref": "#/$defs/vec3" }, "subsurface_radius": { "$ref": "#/$defs/vec3" },
+        "subsurface": { "type": "number" }, "metallic": { "type": "number" }, "specular": { "type": "number" },
+        "specular_tint": { "type": "number" }, "roughness": { "type": "number" },
+        "anisotropic": { "type": "number" }, "anisotropic_rotation": { "type": "number" },
+        "sheen": { "type": "number" }, "sheen_tint": { "type": "number" }, "clearcoat": { "type": "number" },
+        "clearcoat_roughness": { "type": "number" }, "ior": { "type": "number" },
+        "transmission": { "type": "number" }, "transmission_roughness": { "type": "number" },
+        "emission_color": { "$ref": "#/$defs/vec3" }, "emission_strength": { "type": "number" },
+        "textures": { "type": "object", "additionalProperties": { "type": ["string", "boolean"] } }
+      }
+    },
+    "geometry": {
+      "type": "object", "required": ["type"],
+      "properties": {
+        "type": { "enum": ["sphere", "mesh", "inline_mesh"] }, "path": { "type": "string" },
+        "longitude_segments": { "type": "integer" }, "latitude_segments": { "type": "integer" },
+        "positions": { "type": "array", "items": { "$ref": "#/$defs/vec3" } },
+        "tex_coords": { "type": "array", "items": { "$ref": "#/$defs/vec2" } },
+        "indices": { "type": "array", "items": { "type": "integer", "minimum": 0 } },
+        "generate_normals": { "type": "boolean" }, "generate_tangents": { "type": "boolean" }
+      }
+    },
+    "entity": {
+      "type": "object", "required": ["type"],
+      "properties": {
+        "type": { "enum": ["mesh", "point_light"] }, "geometry": { "type": "string" },
+        "material": { "type": "string" }, "position": { "$ref": "#/$defs/vec3" },
+        "color": { "$ref": "#/$defs/vec3" }, "strength": { "type": "number" },
+        "raster_light": { "type": "boolean" }, "transform": { "type": "object" }, "look_at": { "type": "object" }
+      }
+    }
+  }
+}
