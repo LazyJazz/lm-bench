@@ -1,0 +1,253 @@
+{
+  "format": "sparkium-scene",
+  "version": 1,
+  "name": "Sparkium Point Light",
+  "film": {
+    "width": 1024,
+    "height": 1024,
+    "persistence": 0.98,
+    "clamping": 100.0,
+    "max_exposure": 1.0
+  },
+  "renderer": {
+    "pipeline": "auto",
+    "samples_per_dispatch": 32,
+    "max_bounces": 32,
+    "alpha_shadow": false,
+    "ambient_light": [
+      0.1,
+      0.1,
+      0.1
+    ]
+  },
+  "camera": {
+    "eye": [
+      0,
+      2,
+      7
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fov_degrees": 60
+  },
+  "materials": {
+    "white": {
+      "type": "lambertian",
+      "base_color": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    }
+  },
+  "geometries": {
+    "sphere": {
+      "type": "sphere",
+      "longitude_segments": 30
+    },
+    "preview_sphere": {
+      "type": "mesh",
+      "path": "meshes/preview_sphere.obj"
+    }
+  },
+  "entities": [
+    {
+      "type": "mesh",
+      "geometry": "preview_sphere",
+      "material": "white"
+    },
+    {
+      "type": "mesh",
+      "geometry": "sphere",
+      "material": "white",
+      "transform": {
+        "translation": [
+          0,
+          -1001,
+          0
+        ],
+        "scale": [
+          1000,
+          1000,
+          1000
+        ]
+      }
+    },
+    {
+      "type": "point_light",
+      "position": [
+        0.0,
+        4,
+        6.0
+      ],
+      "color": [
+        1,
+        0.0,
+        0.0
+      ],
+      "strength": 278.70680044593087
+    },
+    {
+      "type": "point_light",
+      "position": [
+        2.9999999999999996,
+        4,
+        5.196152422706632
+      ],
+      "color": [
+        1,
+        0.5,
+        0.0
+      ],
+      "strength": 140.64697609001405
+    },
+    {
+      "type": "point_light",
+      "position": [
+        5.196152422706632,
+        4,
+        3.000000000000001
+      ],
+      "color": [
+        1.0,
+        1,
+        0.0
+      ],
+      "strength": 94.05568096313017
+    },
+    {
+      "type": "point_light",
+      "position": [
+        6.0,
+        4,
+        3.6739403974420594e-16
+      ],
+      "color": [
+        0.5,
+        1,
+        0.0
+      ],
+      "strength": 113.14777098891152
+    },
+    {
+      "type": "point_light",
+      "position": [
+        5.196152422706632,
+        4,
+        -2.9999999999999987
+      ],
+      "color": [
+        0.0,
+        1,
+        0.0
+      ],
+      "strength": 141.9647927314026
+    },
+    {
+      "type": "point_light",
+      "position": [
+        2.9999999999999996,
+        4,
+        -5.196152422706632
+      ],
+      "color": [
+        0.0,
+        1,
+        0.5
+      ],
+      "strength": 129.39958592132504
+    },
+    {
+      "type": "point_light",
+      "position": [
+        7.347880794884119e-16,
+        4,
+        -6.0
+      ],
+      "color": [
+        0.0,
+        1.0,
+        1
+      ],
+      "strength": 118.87779362815026
+    },
+    {
+      "type": "point_light",
+      "position": [
+        -3.000000000000001,
+        4,
+        -5.196152422706632
+      ],
+      "color": [
+        0.0,
+        0.5,
+        1
+      ],
+      "strength": 204.49897750511246
+    },
+    {
+      "type": "point_light",
+      "position": [
+        -5.19615242270663,
+        4,
+        -3.0000000000000027
+      ],
+      "color": [
+        0.0,
+        0.0,
+        1
+      ],
+      "strength": 730.9941520467836
+    },
+    {
+      "type": "point_light",
+      "position": [
+        -6.0,
+        4,
+        -1.102182119232618e-15
+      ],
+      "color": [
+        0.5,
+        0.0,
+        1
+      ],
+      "strength": 316.25553447185325
+    },
+    {
+      "type": "point_light",
+      "position": [
+        -5.196152422706632,
+        4,
+        3.000000000000001
+      ],
+      "color": [
+        1,
+        0.0,
+        1.0
+      ],
+      "strength": 201.77562550443906
+    },
+    {
+      "type": "point_light",
+      "position": [
+        -3.0000000000000027,
+        4,
+        5.19615242270663
+      ],
+      "color": [
+        1,
+        0.0,
+        0.5
+      ],
+      "strength": 234.0823970037453
+    }
+  ]
+}

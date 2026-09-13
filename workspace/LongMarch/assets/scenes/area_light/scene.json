@@ -1,0 +1,328 @@
+{
+  "format": "sparkium-scene",
+  "version": 1,
+  "name": "Sparkium Area Light",
+  "film": {
+    "width": 1024,
+    "height": 1024,
+    "persistence": 0.99,
+    "clamping": 100.0,
+    "max_exposure": 1.0
+  },
+  "renderer": {
+    "pipeline": "auto",
+    "samples_per_dispatch": 8,
+    "max_bounces": 32,
+    "alpha_shadow": false,
+    "ambient_light": [
+      0.1,
+      0.1,
+      0.1
+    ]
+  },
+  "camera": {
+    "eye": [
+      0,
+      2,
+      7
+    ],
+    "target": [
+      0,
+      0,
+      0
+    ],
+    "up": [
+      0,
+      1,
+      0
+    ],
+    "fov_degrees": 60
+  },
+  "materials": {
+    "white": {
+      "type": "lambertian",
+      "base_color": [
+        0.8,
+        0.8,
+        0.8
+      ]
+    },
+    "light_0": {
+      "type": "light",
+      "emission": [
+        30.9674222717701,
+        0.0,
+        0.0
+      ]
+    },
+    "light_1": {
+      "type": "light",
+      "emission": [
+        10.450631218125576,
+        10.450631218125576,
+        0.0
+      ]
+    },
+    "light_2": {
+      "type": "light",
+      "emission": [
+        0.0,
+        15.773865859044738,
+        0.0
+      ]
+    },
+    "light_3": {
+      "type": "light",
+      "emission": [
+        0.0,
+        13.208643736461141,
+        13.208643736461141
+      ]
+    },
+    "light_4": {
+      "type": "light",
+      "emission": [
+        0.0,
+        0.0,
+        81.22157244964262
+      ]
+    },
+    "light_5": {
+      "type": "light",
+      "emission": [
+        22.419513944937677,
+        0.0,
+        22.419513944937677
+      ]
+    }
+  },
+  "geometries": {
+    "sphere": {
+      "type": "sphere",
+      "longitude_segments": 30
+    },
+    "preview_sphere": {
+      "type": "mesh",
+      "path": "meshes/preview_sphere.obj"
+    },
+    "quad": {
+      "type": "inline_mesh",
+      "positions": [
+        [
+          -1,
+          -1,
+          0
+        ],
+        [
+          1,
+          -1,
+          0
+        ],
+        [
+          1,
+          1,
+          0
+        ],
+        [
+          -1,
+          1,
+          0
+        ]
+      ],
+      "indices": [
+        0,
+        2,
+        1,
+        0,
+        3,
+        2
+      ]
+    }
+  },
+  "entities": [
+    {
+      "type": "mesh",
+      "geometry": "preview_sphere",
+      "material": "white"
+    },
+    {
+      "type": "mesh",
+      "geometry": "sphere",
+      "material": "white",
+      "transform": {
+        "translation": [
+          0,
+          -1001,
+          0
+        ],
+        "scale": [
+          1000,
+          1000,
+          1000
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_0",
+      "look_at": {
+        "position": [
+          0.0,
+          4,
+          6.0
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_1",
+      "look_at": {
+        "position": [
+          5.196152422706632,
+          4,
+          3.000000000000001
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_2",
+      "look_at": {
+        "position": [
+          5.196152422706632,
+          4,
+          -2.9999999999999987
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_3",
+      "look_at": {
+        "position": [
+          7.347880794884119e-16,
+          4,
+          -6.0
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_4",
+      "look_at": {
+        "position": [
+          -5.19615242270663,
+          4,
+          -3.0000000000000027
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    },
+    {
+      "type": "mesh",
+      "geometry": "quad",
+      "material": "light_5",
+      "look_at": {
+        "position": [
+          -5.196152422706632,
+          4,
+          3.000000000000001
+        ],
+        "target": [
+          0,
+          0,
+          0
+        ],
+        "up": [
+          0,
+          1,
+          0
+        ],
+        "scale": [
+          0.6,
+          0.6,
+          0.6
+        ]
+      }
+    }
+  ]
+}
