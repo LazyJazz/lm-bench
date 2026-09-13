@@ -3,6 +3,7 @@
 #define STB_IMAGE_WRITE_IMPLEMENTATION
 #include "stb_image_write.h"
 
+#include <algorithm>
 #include <filesystem>
 #include <iostream>
 
@@ -10,7 +11,7 @@ using namespace long_march;
 
 namespace {
 void Usage(const char *program) {
-  std::cerr << "Usage: " << program << " <scene.json> [-o image.png] [--frames N] "
+  std::cerr << "Usage: " << program << " <scene.json> [-o image.png] [--spp N] "
             << "[--pipeline auto|rasterization|ray_tracing]\n"
             << "       " << program << " --list [scene-directory]\n";
 }
@@ -38,13 +39,13 @@ int main(int argc, char **argv) {
 
     std::filesystem::path scene_path = argv[1];
     std::filesystem::path output = "output.png";
-    int frames = 1;
+    int spp = 1;
     bool override_pipeline = false;
     sparkium::RenderPipeline pipeline = sparkium::RENDER_PIPELINE_AUTO;
     for (int i = 2; i < argc; ++i) {
       std::string argument = argv[i];
       if ((argument == "-o" || argument == "--output") && i + 1 < argc) output = argv[++i];
-      else if (argument == "--frames" && i + 1 < argc) frames = std::stoi(argv[++i]);
+      else if (argument == "--spp" && i + 1 < argc) spp = std::stoi(argv[++i]);
       else if (argument == "--pipeline" && i + 1 < argc) {
         pipeline = ParsePipeline(argv[++i]);
         override_pipeline = true;
@@ -52,7 +53,7 @@ int main(int argc, char **argv) {
         throw std::runtime_error("unknown or incomplete argument: " + argument);
       }
     }
-    if (frames <= 0) throw std::runtime_error("--frames must be positive");
+    if (spp <= 0) throw std::runtime_error("--spp must be positive");
 
     std::unique_ptr<graphics::Core> graphics_core;
     if (graphics::CreateCore(graphics::BACKEND_API_DEFAULT, graphics::Core::Settings{}, &graphics_core) != 0)
@@ -67,8 +68,13 @@ int main(int argc, char **argv) {
     auto *film = loaded->GetFilm();
     std::unique_ptr<graphics::Image> image;
     graphics_core->CreateImage(film->GetWidth(), film->GetHeight(), graphics::IMAGE_FORMAT_R8G8B8A8_UNORM, &image);
-    for (int frame = 0; frame < frames; ++frame)
+    auto *scene = loaded->GetScene();
+    const int samples_per_dispatch = scene->settings.samples_per_dispatch;
+    for (int remaining = spp; remaining > 0; remaining -= scene->settings.samples_per_dispatch) {
+      scene->settings.samples_per_dispatch = std::min(samples_per_dispatch, remaining);
       core.Render(loaded->GetScene(), loaded->GetCamera(), film, pipeline);
+    }
+    scene->settings.samples_per_dispatch = samples_per_dispatch;
     film->Develop(image.get());
     std::vector<uint8_t> pixels(static_cast<size_t>(film->GetWidth()) * film->GetHeight() * 4);
     image->DownloadData(pixels.data());
@@ -77,7 +83,7 @@ int main(int argc, char **argv) {
                         film->GetWidth() * 4))
       throw std::runtime_error("failed to write image: " + output.string());
     std::cout << "Rendered '" << loaded->GetName() << "' (" << film->GetWidth() << 'x' << film->GetHeight()
-              << ", " << frames << " frame(s)) to " << output.string() << '\n';
+              << ", " << spp << " spp) to " << output.string() << '\n';
     return 0;
   } catch (const std::exception &exception) {
     std::cerr << "sparkium_cli: " << exception.what() << '\n';

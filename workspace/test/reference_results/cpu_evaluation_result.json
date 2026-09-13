@@ -1,0 +1,5 @@
+{
+  "resolved": true,
+  "score": 0.804762,
+  "reason": "every image must meet threshold=0.800; minimum=0.8048; mean=0.8959; area_light=PASS (32 vs 4096 spp): score=0.9336, SSIM=0.9485, linear-RMSE=0.01765, mean-dE00=1.611; cornell_box=PASS (32 vs 4096 spp): score=0.9448, SSIM=0.9516, linear-RMSE=0.01227, mean-dE00=1.406; point_light=PASS (32 vs 4096 spp): score=0.9293, SSIM=0.9391, linear-RMSE=0.01692, mean-dE00=1.637; specular=PASS (32 vs 4096 spp): score=0.8671, SSIM=0.8688, linear-RMSE=0.03006, mean-dE00=2.210; texture=PASS (32 vs 4096 spp): score=0.8048, SSIM=0.8446, linear-RMSE=0.06025, mean-dE00=2.768"
+}

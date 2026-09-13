@@ -4,6 +4,7 @@
   "description": "A C++ library for graphics study",
   "dependencies": [
     "eigen3",
+    "embree",
     "glm",
     "glfw3",
     "fmt",
