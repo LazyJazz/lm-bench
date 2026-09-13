@@ -9,7 +9,7 @@
 ## 功能要求
 
 1. 新增 CMake 构建目标 `demo_sparkium_cpu_cli`，生成可直接运行的 `demo_sparkium_cpu_cli`。
-2. CPU 渲染路径不得依赖 GPU 光线追踪执行。可以通过 vcpkg 引入适合的 CPU 求交库。
+2. CPU 渲染路径不得依赖 GPU 光线追踪执行。求交加速方法由实现自行选择，可以自行实现，也可以引入通用依赖。
 3. CPU CLI 应读取与 `sparkium_cli` 相同的 JSON 场景格式，并支持场景文件目录相对路径和全局路径形式的素材引用。
 4. 支持评测场景使用的相机、网格、球体、变换、纹理、材质和光源：
    - Lambertian 漫反射；
