@@ -20,16 +20,10 @@ graphics::Core *Core::GraphicsCore() const {
 }
 
 void Core::Render(Scene *scene, Camera *camera, Film *film, RenderPipeline render_pipeline) {
-  if (render_pipeline == RENDER_PIPELINE_AUTO) {
-    if (core_->DeviceRayTracingSupport()) {
-      render_pipeline = RENDER_PIPELINE_RAY_TRACING;
-    } else {
-      render_pipeline = RENDER_PIPELINE_RASTERIZATION;
-    }
-  }
+  if (render_pipeline == RENDER_PIPELINE_AUTO) render_pipeline = RENDER_PIPELINE_RAY_TRACING;
   switch (render_pipeline) {
     case RENDER_PIPELINE_RASTERIZATION:
-      raster::Render(this, scene, camera, film);
+      LogError("Rasterization is not included in this build");
       break;
     case RENDER_PIPELINE_RAY_TRACING:
       if (!core_->DeviceRayTracingSupport()) {

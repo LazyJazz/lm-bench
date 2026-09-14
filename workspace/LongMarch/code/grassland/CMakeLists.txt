@@ -1,20 +1,19 @@
-if (LONGMARCH_CUDA_ENABLED)
-    file(GLOB SOURCES "*.cpp" "*.h" "*.cu" "*.cuh")
-else ()
-    file(GLOB SOURCES "*.cpp" "*.h")
-endif ()
+add_library(Grassland grassland.cpp)
 
-add_library(Grassland ${SOURCES})
+set(GRASSLAND_SUBLIB_NAME grassland_util)
+add_subdirectory(util)
+set(GRASSLAND_SUBLIB_NAME grassland_imgui)
+add_subdirectory(imgui)
+set(GRASSLAND_SUBLIB_NAME grassland_vulkan)
+add_subdirectory(vulkan)
+set(GRASSLAND_SUBLIB_NAME grassland_graphics)
+add_subdirectory(graphics)
+set(GRASSLAND_SUBLIB_NAME grassland_math)
+add_subdirectory(math)
 
-file(GLOB subdirs RELATIVE ${CMAKE_CURRENT_SOURCE_DIR} *)
-
-foreach (subdir ${subdirs})
-    if (IS_DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR}/${subdir})
-        set(GRASSLAND_SUBLIB_NAME grassland_${subdir})
-        add_subdirectory(${subdir})
-    endif ()
-endforeach ()
-
-message(STATUS "GRASSLAND_LIBS: ${GRASSLAND_LIBS}")
-
-target_link_libraries(Grassland PUBLIC ${GRASSLAND_LIBS})
+target_link_libraries(Grassland PUBLIC
+        grassland_util
+        grassland_imgui
+        grassland_vulkan
+        grassland_graphics
+        grassland_math)

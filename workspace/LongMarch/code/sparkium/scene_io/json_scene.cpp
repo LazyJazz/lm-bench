@@ -120,7 +120,6 @@ std::unique_ptr<JsonScene> JsonScene::Load(Core *core, const std::filesystem::pa
     result->scene_->settings.raytracing.max_bounces =
         renderer.HasMember("max_bounces") ? renderer["max_bounces"].GetInt() : 32;
     result->scene_->settings.raytracing.alpha_shadow = BoolMember(renderer, "alpha_shadow", false);
-    result->scene_->settings.raster.ambient_light = Vec3Member(renderer, "ambient_light", {0.1f, 0.1f, 0.1f});
     std::string pipeline = renderer.HasMember("pipeline") ? renderer["pipeline"].GetString() : "auto";
     if (pipeline == "rasterization") result->render_pipeline_ = RENDER_PIPELINE_RASTERIZATION;
     else if (pipeline == "ray_tracing") result->render_pipeline_ = RENDER_PIPELINE_RAY_TRACING;
@@ -238,7 +237,6 @@ std::unique_ptr<JsonScene> JsonScene::Load(Core *core, const std::filesystem::pa
           transform = glm::inverse(glm::lookAt(position, target, up)) * glm::scale(glm::mat4{1.0f}, scale);
         }
         auto entity = std::make_unique<EntityGeometryMaterial>(core, geometry->second.get(), material->second.get(), transform);
-        entity->raster_light = BoolMember(spec, "raster_light", true);
         entity_ptr = entity.get();
         result->entities_.push_back(std::move(entity));
       } else if (type == "point_light") {
