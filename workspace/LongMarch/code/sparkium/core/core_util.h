@@ -60,9 +60,8 @@ class Object {
   }
 
 typedef enum RenderPipeline {
-  RENDER_PIPELINE_RASTERIZATION = 0,
-  RENDER_PIPELINE_RAY_TRACING = 1,
-  RENDER_PIPELINE_AUTO = 2  // Uae raytracing if it could
+  RENDER_PIPELINE_RAY_TRACING = 0,
+  RENDER_PIPELINE_AUTO = 1,
 } RenderPipeline;
 
 }  // namespace sparkium

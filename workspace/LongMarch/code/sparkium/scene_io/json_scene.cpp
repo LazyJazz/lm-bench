@@ -121,10 +121,9 @@ std::unique_ptr<JsonScene> JsonScene::Load(Core *core, const std::filesystem::pa
         renderer.HasMember("max_bounces") ? renderer["max_bounces"].GetInt() : 32;
     result->scene_->settings.raytracing.alpha_shadow = BoolMember(renderer, "alpha_shadow", false);
     std::string pipeline = renderer.HasMember("pipeline") ? renderer["pipeline"].GetString() : "auto";
-    if (pipeline == "rasterization") result->render_pipeline_ = RENDER_PIPELINE_RASTERIZATION;
-    else if (pipeline == "ray_tracing") result->render_pipeline_ = RENDER_PIPELINE_RAY_TRACING;
+    if (pipeline == "ray_tracing") result->render_pipeline_ = RENDER_PIPELINE_RAY_TRACING;
     else if (pipeline == "auto") result->render_pipeline_ = RENDER_PIPELINE_AUTO;
-    else throw std::runtime_error("renderer.pipeline must be auto, rasterization, or ray_tracing");
+    else throw std::runtime_error("renderer.pipeline must be auto or ray_tracing");
 
     const auto &film = Member(document, "film");
     int width = Member(film, "width").GetInt();

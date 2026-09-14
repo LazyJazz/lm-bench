@@ -12,13 +12,12 @@ using namespace long_march;
 namespace {
 void Usage(const char *program) {
   std::cerr << "Usage: " << program << " <scene.json> [-o image.png] [--spp N] "
-            << "[--pipeline auto|rasterization|ray_tracing]\n"
+            << "[--pipeline auto|ray_tracing]\n"
             << "       " << program << " --list [scene-directory]\n";
 }
 
 sparkium::RenderPipeline ParsePipeline(const std::string &name) {
   if (name == "auto") return sparkium::RENDER_PIPELINE_AUTO;
-  if (name == "rasterization") return sparkium::RENDER_PIPELINE_RASTERIZATION;
   if (name == "ray_tracing") return sparkium::RENDER_PIPELINE_RAY_TRACING;
   throw std::runtime_error("unknown pipeline: " + name);
 }
