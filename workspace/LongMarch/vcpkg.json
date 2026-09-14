@@ -7,17 +7,10 @@
     "glm",
     "glfw3",
     "fmt",
-    "freetype",
     "vulkan-memory-allocator",
-    "gtest",
     "stb",
     "mikktspace",
     "tinyobjloader",
-    "rapidjson",
-    "assimp",
-    {
-      "name": "d3dx12",
-      "platform": "windows"
-    }
+    "rapidjson"
   ]
 }

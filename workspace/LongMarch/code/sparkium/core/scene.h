@@ -21,13 +21,9 @@ class Scene : public Object {
       int max_bounces = 32;
       int alpha_shadow = false;
     } raytracing;
-    struct Rasterization {
-      glm::vec3 ambient_light{0.1f, 0.1f, 0.1f};
-    } raster;
     int &samples_per_dispatch{raytracing.samples_per_dispatch};
     int &max_bounces{raytracing.max_bounces};
     int &alpha_shadow{raytracing.alpha_shadow};
-    glm::vec3 &ambient_light{raster.ambient_light};
   } settings;
 
   struct EntityStatus {
