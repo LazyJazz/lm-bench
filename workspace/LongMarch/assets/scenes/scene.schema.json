@@ -19,7 +19,7 @@
     "renderer": {
       "type": "object",
       "properties": {
-        "pipeline": { "enum": ["auto", "rasterization", "ray_tracing"] },
+        "pipeline": { "enum": ["auto", "ray_tracing"] },
         "samples_per_dispatch": { "type": "integer", "minimum": 1 },
         "max_bounces": { "type": "integer", "minimum": 1 }, "alpha_shadow": { "type": "boolean" },
         "ambient_light": { "$ref": "#/$defs/vec3" }
